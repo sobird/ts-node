@@ -1,13 +1,13 @@
 {
-  "name": "@sobird/npm-template",
-  "version": "1.1.0",
-  "description": "npm template",
+  "name": "@sobird/ts-node",
+  "version": "0.1.0",
+  "description": "ts-node with tsconfig-paths",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "build": "rollup -c --environment NODE_ENV:production",
     "eslint:fix": "eslint src --fix",
-    "test": "echo \"husky test scripts\"",
+    "node": "NODE_OPTIONS=--import=./node_modules/@sobird/ts-node/register.js node",
     "lint:eslint": "eslint src --ext ts,js --report-unused-disable-directives --max-warnings 10",
     "preversion": "yarn lint:eslint",
     "version": "git add -A .",
@@ -17,7 +17,7 @@
   },
   "keywords": [
     "npm",
-    "npm-template"
+    "ts-node"
   ],
   "author": "sobird",
   "license": "MIT",

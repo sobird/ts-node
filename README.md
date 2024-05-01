@@ -1,5 +1,5 @@
-# npm-template
-npm包模板仓库，该模板仓库演示了一个可以通过`node`运行一个带有`tsconfig-paths`配置的 `TypeScript` 脚本。
+# ts-node
+通过`node`运行一个带有`tsconfig-paths`配置的 `TypeScript` 脚本。
 
 [![npm][npm]][npm-url]
 [![Build Status][build-status]][build-status-url]
@@ -7,12 +7,12 @@ npm包模板仓库，该模板仓库演示了一个可以通过`node`运行一�
 
 <!-- Badges -->
 
-[npm]: https://img.shields.io/npm/v/@sobird/npm-template.svg
-[npm-url]: https://www.npmjs.com/package/@sobird/npm-template
-[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/npm-template/release-please.yml?label=CI&logo=github
-[build-status-url]: https://github.com/sobird/npm-template/actions
-[size]: https://packagephobia.com/badge?p=@sobird/npm-template
-[size-url]: https://packagephobia.com/result?p=@sobird/npm-template
+[npm]: https://img.shields.io/npm/v/@sobird/ts-node.svg
+[npm-url]: https://www.npmjs.com/package/@sobird/ts-node
+[build-status]: https://img.shields.io/github/actions/workflow/status/sobird/ts-node/release-please.yml?label=CI&logo=github
+[build-status-url]: https://github.com/sobird/ts-node/actions
+[size]: https://packagephobia.com/badge?p=@sobird/ts-node
+[size-url]: https://packagephobia.com/result?p=@sobird/ts-node
 
 
 
@@ -21,19 +21,51 @@ npm包模板仓库，该模板仓库演示了一个可以通过`node`运行一�
 安装完本包后(建议安装到全局)，配置环境变量
 
 ```sh
-npm i -g @sobird/npm-template
-# 该路径为@sobird/npm-template实际安装路径
+npm i @sobird/ts-node
+# 该路径为@sobird/ts-node实际安装路径
 export NODE_OPTIONS="--import=/path/to/register.js"
+```
+注：此配置可能会影响某些库的运行比如(vitest)
+
+或者配置vscode的launch.json
+```json
+{
+  // 使用 IntelliSense 了解相关属性。 
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node.js",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${file}",
+      // "preLaunchTask": "tsc:build - tsconfig.json",
+      "env": {
+        "NODE_OPTIONS": "--import=./node_modules/@sobird/ts-node/register.js"
+      }
+    }
+  ]
+}
 ```
 
 如上配置完成后，即可通过`node`执行运行`TypeScript`文件，比如：
 
 ```ts
+// test.ts
 import fs from 'fs';
 // tsconfig-paths
 import utils from '@/utils/local'
 
 console.log(fs, utils);
+```
+
+
+```sh
+npm run node test.ts
 ```
 
 ## How to publish
