@@ -1,6 +1,6 @@
 {
   "name": "@sobird/ts-node",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "ts-node with tsconfig-paths",
   "type": "module",
   "main": "index.js",
